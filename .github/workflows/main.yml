@@ -39,7 +39,6 @@ jobs:
           path: ${{ env.TARGET_WORKSPACE }}
       - name: Sync directories
         run: |
-          ls
-          ls ${{ env.TARGET_WORKSPACE }}
-          # chmod +x ./sync.py
-          # ./sync.py
+          pip3 install dirsync
+          python ${{ env.TARGET_WORKSPACE }}/sync.py
+          
