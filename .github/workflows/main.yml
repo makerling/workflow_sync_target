@@ -25,13 +25,13 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: main
-        run: ls 
+      - name: list target
+        run: ls
 
       - name: Checkout tools repo
         uses: actions/checkout@v2
         with:
           repository: makerling/workflow_sync_source
           path: workflow_sync_source
-        run: |
-          ls 
-          
+      - name: list source
+        run: ls
