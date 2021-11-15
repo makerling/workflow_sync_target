@@ -31,7 +31,9 @@ jobs:
           repository: makerling/workflow_sync_source
           path: workflow_sync_source
       - name: list source
-        run: ls
+        run: |
+          pwd
+          ls
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -40,5 +42,8 @@ jobs:
       - name: Sync directories
         run: |
           pip3 install dirsync
+          pwd
+          ls
           python ${{ env.TARGET_WORKSPACE }}/sync.py
+          ls ${{ env.TARGET_WORKSPACE }}
           
