@@ -41,10 +41,11 @@ jobs:
           path: ${{ env.TARGET_WORKSPACE }}
       - name: Sync directories
         run: |
-          #pip3 install dirsync
           pwd
           ls
-          ls ${{ env.TARGET_WORKSPACE }}
-          ls /home/runner/work/workflow_sync_target/workflow_sync_target/files
-          #python ${{ env.TARGET_WORKSPACE }}/sync.py
+          ls ${{ env.TARGET_WORKSPACE }}/files
+          ls /home/runner/work/workflow_sync_target/files
+          ls /home/runner/work/workflow_sync_source/files
+          pip3 install dirsync
+          python ${{ env.TARGET_WORKSPACE }}/sync.py
           
