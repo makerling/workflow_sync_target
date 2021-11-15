@@ -40,6 +40,7 @@ jobs:
           python ${{ env.TARGET_WORKSPACE }}/sync.py
       - name: Update changes in GitHub repository
         run:  |
+          cd ${{ env.TARGET_WORKSPACE }}
           git config --global user.name 'makerling' 
           git config --global user.email 'github@makerling.com'
           git add -A
