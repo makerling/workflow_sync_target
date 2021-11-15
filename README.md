@@ -5,7 +5,7 @@
 * [Setup](#setup)
 
 ## General info
-This project uses Github Actions to create sync a folder of files from one repository to the target repository triggered by a pull request. Once files have been synced, the pipeline commits any updated files to the repository. 
+This project uses Github Actions to sync a folder of files from my workflow_sync_source repository to the target repository triggered by a pull request. Once files have been synced, the pipeline commits any updated files to the repository. 
 	
 ## Technologies
 Project is created with:
