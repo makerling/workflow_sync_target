@@ -38,12 +38,13 @@ jobs:
         run: |
           pip3 install dirsync
           python ${{ env.TARGET_WORKSPACE }}/sync.py
-      - name: Push synced files to repo
-        uses: nkoppel/push-files-to-another-repository@1.1.0
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      - name: Push changes
+        uses: actions-x/commit@v2
         with:
-          source-files: '${{ env.TARGET_WORKSPACE }}/files/'
-          destination-username: 'makerling'
-          destination-directory: 'makerling/workflow_sync_target'
-          commit-email: 'github@vanderling.com'
+          email: github@vanderling.com
+          name: GitHub Actions Autocommitter
+          branch: main
+          files: '${{ env.TARGET_WORKSPACE }}/files/'
+          repository: https://github.com/makerling/workflow_sync_target
+          token: ${{ secrets.MY_SECRET_TOKEN }}
+          force: true
