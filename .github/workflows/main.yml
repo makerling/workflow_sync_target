@@ -38,14 +38,12 @@ jobs:
         run: |
           pip3 install dirsync
           python ${{ env.TARGET_WORKSPACE }}/sync.py
-      - name: Commit files
-        run: |
-          git config --global user.email "github@vanderling.com"
-          git config --global user.name "makerling"
-          git add ${{ env.TARGET_WORKSPACE }}/files/*
-          git commit -m "synced with source directory"
-      - name: Push changes
-        uses: ad-m/github-push-action@master
+      - name: Push synced files to repo
+        uses: nkoppel/push-files-to-another-repository@1.1.0
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          force: true
+          source-files: '${{ env.TARGET_WORKSPACE }}/files/'
+          destination-username: 'makerling'
+          destination-directory: 'makerling/workflow_sync_target'
+          commit-email: 'github@vanderling.com'
