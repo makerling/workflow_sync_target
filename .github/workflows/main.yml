@@ -30,23 +30,22 @@ jobs:
         with:
           repository: makerling/workflow_sync_source
           path: workflow_sync_source
-      - name: list source
-        run: |
-          pwd
-          ls
-
-      - name: Checkout
+      - name: Checkout current repo
         uses: actions/checkout@v2
         with:
           path: ${{ env.TARGET_WORKSPACE }}
       - name: Sync directories
         run: |
-          # pwd
-          # ls
-          # ls ${{ env.TARGET_WORKSPACE }}/files
-          # ls workflow_sync_source/files
-          # ls /home/runner/work/workflow_sync_target/workflow_sync_target/files
-          # ls /home/runner/work/workflow_sync_source/files
           pip3 install dirsync
           python ${{ env.TARGET_WORKSPACE }}/sync.py
-          
+      - name: Commit files
+        run: |
+          git config --local user.email "github@vanderling.com"
+          git config --local user.name "makerling"
+          git add ${{ env.TARGET_WORKSPACE }}/files/*
+          git commit -m "synced with source directory"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
