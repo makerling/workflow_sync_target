@@ -38,14 +38,10 @@ jobs:
         run: |
           pip3 install dirsync
           python ${{ env.TARGET_WORKSPACE }}/sync.py
-      - name: Push changes
-        if: success()
-        uses: actions-x/commit@v2
-        with:
-          email: github@vanderling.com
-          name: GitHub Actions Autocommitter
-          branch: main
-          files: '${{ env.TARGET_WORKSPACE }}/files/'
-          repository: https://github.com/makerling/workflow_sync_target
-          token: ${{ secrets.MY_SECRET_TOKEN }}
-          force: true
+      - name: Update changes in GitHub repository
+        run:  |
+          git config --global user.name 'makerling' 
+          git config --global user.email 'github@makerling.com'
+          git add -A
+          git commit -m '[automated commit] add synced files'
+          git push
