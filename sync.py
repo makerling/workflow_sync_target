@@ -1,7 +1,7 @@
 from dirsync import sync
 
-sourcedir='./workflow-sync-source/files'
-targetdir='./workflow-sync-target/files'
+sourcedir='files'
+targetdir='files'
 action='sync'
 
 sync(sourcedir, targetdir, action)
