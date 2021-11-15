@@ -39,6 +39,7 @@ jobs:
           pip3 install dirsync
           python ${{ env.TARGET_WORKSPACE }}/sync.py
       - name: Push changes
+        if: success()
         uses: actions-x/commit@v2
         with:
           email: github@vanderling.com
