@@ -40,8 +40,8 @@ jobs:
           python ${{ env.TARGET_WORKSPACE }}/sync.py
       - name: Commit files
         run: |
-          git config --local user.email "github@vanderling.com"
-          git config --local user.name "makerling"
+          git config --global user.email "github@vanderling.com"
+          git config --global user.name "makerling"
           git add ${{ env.TARGET_WORKSPACE }}/files/*
           git commit -m "synced with source directory"
       - name: Push changes
